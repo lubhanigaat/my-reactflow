@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@ui5/webcomponents-react';
 import React, { StrictMode } from "react";
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import App from './JsFiles/App';
 import './index.css';
 import "./style.css";
 import reportWebVitals from './reportWebVitals';
@@ -17,9 +17,9 @@ reportWebVitals();
 
 root.render(
  
-   <React.StrictMode>
+   <StrictMode>
    <App />
- </React.StrictMode>
+ </StrictMode>
   
   
 );
