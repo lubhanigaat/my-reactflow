@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FlexBox, FlexBoxJustifyContent } from "@ui5/webcomponents-react";
-//import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 import {newURL} from "../Tools/ComboBox";
 //import dotenv from 'dotenv';
 //dotenv.config();
 import {username,password} from "./config";
-import {newURL} from "../Tools/ComboBox";
+
 
 
 
@@ -93,6 +93,7 @@ export default function Auth() {
 
       const authToken = response.data.access_token;
       console.log(authToken);
+     
       // Store the authToken securely (e.g., using localStorage, cookies, etc.)
 /*
       // Decode the auth token
@@ -110,6 +111,88 @@ export default function Auth() {
       // Handle login error
     }
   };
+  //coiCoCID
+
+const makeRequestcoiCoCID = async (data) => {
+
+  try {
+
+   
+
+    const response = await axios.post(
+
+      'http://localhost:4004/openapi/coicocid/createCoICoCID',
+
+      data,
+
+     {
+
+        headers: {
+
+          'Authorization': 'Basic YWRtaW46MTIzNA==',
+
+          //'Content-Type': 'application/json',
+
+          //'Access-Control-Allow-Origin': 'http://localhost:3000',
+
+
+
+
+        }
+
+      }
+
+    );
+
+
+
+    console.log(response);
+    const CoICoCID = response.data.coICoCID;
+
+    //console.log(authToken);
+
+    console.log(CoICoCID);
+
+   
+
+
+
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+};
+
+
+
+
+const coiCoCIDReq = async () => {
+
+  try {
+
+    const res = await makeRequestcoiCoCID({
+      "patientTherapyNumber": "ATHUME0080",
+      "originSystemID": "originSystemID",
+      "therapyID": "THP099",
+      "requestedBy": "12345678976543213456786543245676543564",
+      "requestedAt": "2017-04-13T15:51:04.0000000Z",
+      "requestedMessageID": "requestedMessageID",
+      "referenceDocID": "1239112",
+      "treatmentCenterID": "TMC01"
+  });
+
+   
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+};
 
   return (
     <div>
@@ -126,6 +209,19 @@ export default function Auth() {
           }}
         >
           Token
+        </button>
+        <button
+          onClick={coiCoCIDReq}
+          style={{
+            backgroundColor: "ButtonFace",
+            color: "black",
+            padding: "10px 20px",
+            borderRadius: "10px",
+            fontSize: "12px",
+            cursor: "pointer"
+          }}
+        >
+          coiCoCID
         </button>
       </FlexBox>
     </div>
